@@ -37,15 +37,25 @@ If your list order changes (like after sorting), remove(2) might delete a differ
 
 The Num you auto-generate and the index are not always the same thing.*/
 public Student removeStudent(int num){
-    for (Student st : students){
+    Student removed = null;
+    // Using a standard for loop to avoid concurrent modification
+    for (int i =0; i<students.size(); i++){
+        Student st = students.get(i);
         if (st.getNum() == num){
-            students.remove(st);
+            removed = students.remove(i);
             System.out.println("✅ Student removed: "+ st);
-            return st;
+            break;
         }
+
     }
-    System.out.println("⚠ No student found with number: " + num);
-    return null;
+    if (removed != null){
+        for (int i = 0; i < students.size(); i++) {
+            students.get(i).setNum(i+1);
+        }
+    }else{
+        System.out.println("⚠ No student found with number: " + num);
+    }
+    return removed;
 }
     public Student findStudent(int num){
         for (Student st : students){
@@ -53,7 +63,6 @@ public Student removeStudent(int num){
                 System.out.println(st.toString());
                 return st;
             }
-
         }
         System.out.println("there's no such a student with this number: "+num);
         return null;
