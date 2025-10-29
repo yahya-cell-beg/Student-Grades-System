@@ -85,7 +85,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%-3d | %-12s | %-4.1f | %-4.1f | %-4.1f | %-4.1f",
+        return String.format("%-3d   | %-12s | %-4.1f | %-4.1f | %-4.1f | %-4.1f",
                 getNum(), getNom() + " " + getPrenom(), getMath(), getNoteJava(), getEnglish(), getPhysics());
     }
 

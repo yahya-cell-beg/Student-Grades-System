@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class StudentManager {
-    private ArrayList<Student> students = new ArrayList<>();
+    private final ArrayList<Student> students = new ArrayList<>();
 
     public boolean addStudent(Student s) {
         for (Student st : students) {
@@ -60,7 +60,7 @@ public Student removeStudent(int num){
     public Student findStudent(int num){
         for (Student st : students){
             if (st.getNum() == num){
-                System.out.println(st.toString());
+                System.out.println(st);
                 return st;
             }
         }
@@ -70,17 +70,24 @@ public Student removeStudent(int num){
     public Student FindStudentName(String Nom, String Prenom){
         for (Student st : students){
             if(st.getNom().equalsIgnoreCase(Nom) && st.getPrenom().equalsIgnoreCase(Prenom)){
-                System.out.println(st.toString());
+                System.out.println(st);
                 return st;
             }
         }
-        System.out.println("there's no such a student with this name: "+Nom+""+Prenom);
+        System.out.println("there's no such a student with this name: "+Nom+Prenom);
         return null;
     }
     public void displayStudents(){
-        for (Student  s : students){
+        if (students.isEmpty()) {
+            System.out.println("||    There's No Students In The List!!!     ||");
+            System.out.println("-----------------------------------------------");
+            return;
+        }
+
+        for (Student s : students) {
             System.out.println(s.toString());
         }
+
 
     }
 }
